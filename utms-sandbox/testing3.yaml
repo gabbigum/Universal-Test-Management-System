@@ -1,0 +1,20 @@
+project:
+  name: My Not So Cool project
+  description: Cool description of a project
+suites:
+  - BackEndTests:
+      - MavenVersionTest:
+          enabled: true
+          command: mvn --version
+      - LsLTest:
+          enabled: true
+          command: ls -l
+          description: This test does something too
+  - SomethingElseTest:
+      - RouterTest:
+          enabled: true
+          command: echoo Test 3
+          description: Hello router
+      - GuardsTest:
+          enabled: false
+          command: echo Test 4

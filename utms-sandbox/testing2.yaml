@@ -1,0 +1,20 @@
+project:
+  name: My Cool project
+  description: Cool description of a project
+suites:
+  - BackEndTests:
+      - ServiceTest:
+          enabled: true
+          command: echo Test
+      - DataTest:
+          enabled: true
+          command: echo Test 10
+          description: This test does something too
+  - UITests:
+      - RouterTest:
+          enabled: true
+          command: echo Test 3
+          description: Hello router
+      - GuardsTest:
+          enabled: false
+          command: echo Test 4

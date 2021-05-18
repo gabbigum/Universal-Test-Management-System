@@ -1,0 +1,38 @@
+pipeline {
+    agent any  
+
+    stages {
+        
+        stage('Copy Artifact') {
+            steps {
+                script {
+                    step ([$class: 'CopyArtifact',
+                    projectName: 'utms-cli',
+                    target: 'cli']);
+                }
+            }
+        }
+        stage('Run tests') {
+            steps {
+                sh 'java -jar cli/target/utms-cli.jar -c testing.yaml -s http://10.0.2.2:8080/projects'
+                sh 'java -jar cli/target/utms-cli.jar -c testing2.yaml -s http://10.0.2.2:8080/projects'
+                sh 'java -jar cli/target/utms-cli.jar -c testing3.yaml -s http://10.0.2.2:8080/projects'
+                sh 'java -jar cli/target/utms-cli.jar -c testing.yaml -s http://10.0.2.2:8080/projects'
+                sh 'java -jar cli/target/utms-cli.jar -c testing4.yaml -s http://10.0.2.2:8080/projects'
+                sh 'java -jar cli/target/utms-cli.jar -c testing2.yaml -s http://10.0.2.2:8080/projects'
+                sh 'java -jar cli/target/utms-cli.jar -c testing3.yaml -s http://10.0.2.2:8080/projects'
+                sh 'java -jar cli/target/utms-cli.jar -c testing.yaml -s http://10.0.2.2:8080/projects'
+                sh 'java -jar cli/target/utms-cli.jar -c testing2.yaml -s http://10.0.2.2:8080/projects'
+                sh 'java -jar cli/target/utms-cli.jar -c testing4.yaml -s http://10.0.2.2:8080/projects'
+                sh 'java -jar cli/target/utms-cli.jar -c testing3.yaml -s http://10.0.2.2:8080/projects'
+                sh 'java -jar cli/target/utms-cli.jar -c testing.yaml -s http://10.0.2.2:8080/projects'
+                sh 'java -jar cli/target/utms-cli.jar -c testing2.yaml -s http://10.0.2.2:8080/projects'
+                sh 'java -jar cli/target/utms-cli.jar -c testing3.yaml -s http://10.0.2.2:8080/projects'
+                sh 'java -jar cli/target/utms-cli.jar -c testing4.yaml -s http://10.0.2.2:8080/projects'
+                sh 'java -jar cli/target/utms-cli.jar -c testing3.yaml -d'
+                sh 'java -jar cli/target/utms-cli.jar -c testing2.yaml -d'
+                sh 'java -jar cli/target/utms-cli.jar -c testing.yaml -d'
+            }
+        }
+    }
+}
