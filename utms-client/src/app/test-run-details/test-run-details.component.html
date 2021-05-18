@@ -1,0 +1,52 @@
+<div *ngIf="testRun" class="title-margin">
+    <span routerLink="/project/{{project?.id}}" class="project-name">{{project?.name}}</span> |
+    <span [ngClass]="{
+        'passing' : testRun.status == 'passed',
+        'failing' : testRun.status == 'failed'
+    }">Run #{{testRun?.runId}}</span>
+</div>
+
+<div *ngIf="testRun" class="status-margin">
+    <span class="status">Status: </span>
+    <span [ngClass]="{
+        'passing' : testRun.status == 'passed',
+        'failing' : testRun.status == 'failed'
+    }">{{ testRun?.status | titlecase }}</span>
+</div>
+
+<div *ngIf="testRun" class="status-margin">
+    <span class="status">Result: </span>
+    <span class="passing">{{ computePassRate(testRun) }}</span>
+    <span>/</span>
+    <span>{{ getNumberOfTests(testRun )}}</span>
+</div>
+
+<div class="border-div">
+    <ul id="myUL" *ngFor="let suite of testRun?.suites">
+        <li>
+            <span [ngClass]="{
+            'caret-green' : suite.status == 'passed',
+            'caret-red' : suite.status == 'failed'
+        }" (click)="toggleCarret($event)">{{ suite.name }}</span>
+            <span class="ms-offset ">took {{ computeSuiteTimeTaken(suite.name) }}ms</span>
+            <span class="nested test-offset">
+                <ul *ngFor="let test of suite.tests">
+                    <li>
+                        <span class="test-offset" [ngClass]="{
+                    'caret-check' : test.status == 'passed',
+                    'caret-cross' : test.status == 'failed',
+                    'caret-skip' : test.status == 'skipped'
+                }" (click)="toggleCarret($event) ">{{ test.name }} <span class="ms-offset">took {{
+                                computeTimeTaken(test.startTime,
+                                test.endTime) }}ms</span></span>
+
+            <div class="nested" *ngIf="test.status == 'failed'">
+                <span class="error-offset">Error:</span>
+                <div class="error-message error-offset">{{ decodeBase64Error(test.error) }}</div>
+            </div>
+        </li>
+    </ul>
+    </span>
+    </li>
+    </ul>
+</div>

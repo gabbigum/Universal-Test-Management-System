@@ -1,0 +1,29 @@
+<div class="project-name">{{ project?.name }}</div>
+
+<div>{{project?.description}}</div>
+
+<div class="legend">
+    <span class="status">Status: </span>
+    <span class="passing">Passing</span>
+    <span class="status"> | </span>
+    <span class="failing">Failing</span>
+</div>
+
+<div class="last-runs status">Last 5 runs:</div>
+
+<table class="table" *ngIf="project">
+    <thead>
+    </thead>
+    <tbody>
+        <tr *ngFor="let test of project.testRuns.reverse().slice(0, 5)">
+            <td routerLink='/project/{{ project.id }}/runs/{{ test.runId }}' class="td-format id">#{{ test.runId }}</td>
+            <td class="td-format td status" [ngClass]="{
+                'passing' : test.status == 'passed',
+                'failing' : test.status == 'failed'
+            }">{{ test.status | titlecase }}</td>
+            <td class="td-format runs">{{ computePassRate(test) }}/{{ getNumberOfTests(test) }}</td>
+        </tr>
+    </tbody>
+</table>
+
+<div *ngIf="project?.testRuns?.length === 0">There aren't any test runs.</div>

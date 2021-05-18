@@ -1,0 +1,11 @@
+.copyright {
+    font-weight: bold;
+    position: fixed;
+    text-align: center;
+    bottom: 0;
+    width: 100%;
+}
+
+.copyright::after {
+    content: '\00A9';
+}

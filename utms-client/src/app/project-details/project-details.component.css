@@ -1,0 +1,59 @@
+.passing {
+    color: green;
+    font-weight: bold;
+}
+
+.failing {
+    color: red;
+    font-weight: bold;
+}
+
+.status {
+    font-weight: bold;
+}
+
+.project-name {
+    color: rgb(4, 160, 4);
+    font-size: large;
+    font-weight: bold;
+    margin-bottom: 5px;
+}
+
+.legend {
+    padding-top: 20px;
+    padding-bottom: 20px;
+}
+
+.last-runs {
+    padding-bottom: 15px;
+}
+
+table,
+th,
+td {
+    border: 1px solid black;
+    border-collapse: collapse;
+}
+
+.td-format {
+    padding-right: 10px;
+    padding-top: 5px;
+    padding-bottom: 10px;
+    padding-left: 5px;
+}
+
+.td-format.id {
+    text-decoration: underline;
+}
+
+.td-format.runs {
+    padding-right: 80px;
+}
+
+.td-format.status {
+    padding-right: 30px;
+}
+
+tr:nth-child(even) {
+    background-color: #f2f2f2;
+}
